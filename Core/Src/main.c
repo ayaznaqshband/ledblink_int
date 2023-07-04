@@ -43,6 +43,7 @@
 /* USER CODE BEGIN PV */
 volatile uint8_t flag=0;
 uint8_t counter=0;
+uint16_t delay[] = {100, 200, 400, 800};
 
 /* USER CODE END PV */
 
@@ -94,98 +95,26 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
 
-    /* USER CODE BEGIN 3 */
-//	  if(flag==1)
-//          HAL_GPIO_WritePin(GPIOG, GPIO_PIN_13, GPIO_PIN_SET);
-//	  else if(flag==2)
-//	  {
-//		  HAL_GPIO_WritePin(GPIOG, GPIO_PIN_13, GPIO_PIN_SET);
-//		  HAL_Delay(500);
-//		  HAL_GPIO_WritePin(GPIOG, GPIO_PIN_13, GPIO_PIN_SET);
-//	  }
-//	  else if(flag==3)
-//	 	  {
-//	 		  HAL_GPIO_WritePin(GPIOG, GPIO_PIN_13, GPIO_PIN_SET);
-//	 		  HAL_Delay(200);
-//	 		  HAL_GPIO_WritePin(GPIOG, GPIO_PIN_13, GPIO_PIN_SET);
-//	 	  }
-//	  else if(flag==4)
-//	  	 	  {
-//	  	 		  HAL_GPIO_WritePin(GPIOG, GPIO_PIN_13, GPIO_PIN_SET);
-//	  	 		  HAL_Delay(1000);
-//	  	 		  HAL_GPIO_WritePin(GPIOG, GPIO_PIN_13, GPIO_PIN_SET);
-//	  	 	  }
 	 if(flag==1)
 	 {
 		 counter++;
-
-	              if (counter==1)
+		 flag=0;
 	                  // Toggle LED on
-	              	  	  {
-	              	           flag=0;
-
 	              	          while(flag==0)
 	              	          {
 	              	  		  HAL_GPIO_WritePin(GPIOG, GPIO_PIN_13, GPIO_PIN_SET);
-	              	           HAL_Delay(100);
+	              	           HAL_Delay(delay[counter-1]);
 	              	           HAL_GPIO_WritePin(GPIOG, GPIO_PIN_13, GPIO_PIN_RESET);
-	              	         HAL_Delay(100);
-
+	              	         HAL_Delay(delay[counter-1]);
 	              	          }
 	              	        //  break;
-	              	  	  }
-
-	              if (counter==2)
-	                  // Start LED blinking (1 second interval)
-	              	  	  {
-	              	  		  	flag=0;
-//	              	  		counter++;
-	              	  		 while(flag==0)
-	              	  			              	          {
-	              	  			HAL_GPIO_WritePin(GPIOG, GPIO_PIN_13, GPIO_PIN_SET);
-	              	            HAL_Delay(500);
-	              	            HAL_GPIO_WritePin(GPIOG, GPIO_PIN_13, GPIO_PIN_RESET);
-	              	          HAL_Delay(500);}
-	              	  	//	break;
-	              	  	  }
-	              if (counter==3)
-	                  // Start LED blinking faster (500ms interval)
-	                   {
-	                	   flag=0;
-//	                	   counter++;
-	                	   while(flag==0)
-	                	  	              	          {
-	                	   HAL_GPIO_WritePin(GPIOG, GPIO_PIN_13, GPIO_PIN_SET);
-	                	  HAL_Delay(750);
-	                	  HAL_GPIO_WritePin(GPIOG, GPIO_PIN_13, GPIO_PIN_RESET);
-	                	  HAL_Delay(750);}
-	                	//   break;
-	                  }
-	              if (counter==4)
-	              	                  // Start LED blinking faster (500ms interval)
-	              	     {
-	              	      flag=0;
-//	              	    counter++;
-	              	    while(flag==0)
-	              	   	              	          {
-	              	      HAL_GPIO_WritePin(GPIOG, GPIO_PIN_13, GPIO_PIN_SET);
-	              	      HAL_Delay(1000);
-	              	      HAL_GPIO_WritePin(GPIOG, GPIO_PIN_13, GPIO_PIN_RESET);
-	              	    HAL_Delay(1000);}
-	              	//  break;
-	              	     }
-
-	              	if (counter>4)
-	                  // Reset button press count
-	              {
+	              	if (counter>3)
 	                  counter=0;
-	              }
-
+	 }
 
 	 }
-  }
+
   /* USER CODE END 3 */
 }
 
